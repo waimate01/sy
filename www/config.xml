@@ -45,7 +45,6 @@
 	<plugin name="cordova-plugin-whitelist" />
 	<plugin name="cordova-plugin-android-permissions" source="npm" version="0.10.0" />
 	
-	<icon src="res/icon.png" />
 	
 
 	
