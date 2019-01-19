@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <!--meta name="viewport" content="width=device-width"-->
+  <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, maximum-scale=1.0, target-densityDpi=device-dpi" />
+  
+  <meta http-equiv="cache-control" content="no-cache, must-revalidate, post-check=0, pre-check=0">
+  <meta http-equiv="expires" content="Sat, 31 Oct 2014 00:00:00 GMT">
+  <meta http-equiv="pragma" content="no-cache">
+  <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap://ready data:* 'unsafe-inline' 'unsafe-eval' file: gap: gap://* ">  
+  
+  <script src="cordova.js"></script>
+  
+</head>
+
+
+<style>
+ body {margin: 0}
+ #MyIframe {width: 100vw; border:none; height:100vh; }
+ #MyMainDiv {position:relative}
+ #LoadingScreen {font-size:200%; text-align:center; position:absolute; top:0}
+ 
+ #MyReload {width: 100%;  text-align: center;  background-color: gray;  border-style: outset; color: red; font-weight: 700; padding-top: 3px;     font-family: sans-serif }
+ </style>
+ 
+ 
+<body onload="BodyLoaded()">
+<div id=MyReload onclick="reload()"> Reload Source</div>
+
+ <div id=MyMainDiv> 
+	<div id=LoadingScreen> APP <p>IS <p>LOADING</div>
+	<iframe id=MyIframe allow='geolocation; camera' ></iframe>
+	</div>
+
+<script>
+
+
+var isrc = "https://sy--waimate01.repl.co/";
+
+
+function reload() {
+    LoadingScreen.style.display="block";	
+	
+	el=document.createElement("IFRAME");
+	MyMainDiv.removeChild(MyMainDiv.querySelector("#MyIframe"));
+	el.id="MyIframe";
+	el.onload= FrameLoaded;
+	MyMainDiv.appendChild(el);
+	
+	fetch(isrc)
+			.then(function(r) {return r.text()})
+			.then(function(t) {document.getElementById("MyIframe").srcdoc = t;}); 
+	}
+	
+	
+
+	
+document.addEventListener('deviceready', deviceIsReady);
+
+	
+function deviceIsReady () {
+	reload();	
+	}
+	
+	
+function FrameLoaded() {
+	LoadingScreen.style.display="none";	
+	}	
+	
+	
+  
+  
+  </script>
+  
+
+
+</body>
+</html>

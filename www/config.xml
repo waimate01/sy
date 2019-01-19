@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<widget xmlns     = "http://www.w3.org/ns/widgets"
+        xmlns:gap = "http://phonegap.com/ns/1.0"
+        id        = "com.davies2.daveian"
+		xmlns:cdv="http://cordova.apache.org/ns/1.0"
+		xmlns:android="http://schemas.android.com/apk/res/android"
+        version   = "0.0.2">
+
+	<edit-config file="AndroidManifest.xml" mode="merge" target="/manifest/application/activity">
+		<activity android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustPan" />
+	</edit-config>		
+
+	
+    <name>SydYeets</name>
+
+    <description>Aesthetic cafe finder</description>
+
+    <author email="ian@davies2.com">Juliette Davies</author>
+	<platform name="ios" />
+    <platform name="android" />
+	
+	
+	<preference name="phonegap-version" value="cli-8.0.0" />
+
+    <!-- Customize your app and platform with the preference element. -->
+    <preference name="orientation"                value="default" />        <!-- all: default means both landscape and portrait are enabled -->
+    <preference name="target-device"              value="universal" />      <!-- all: possible values handset, tablet, or universal -->
+    <preference name="fullscreen"                 value="true" />           <!-- all: hides the status bar at the top of the screen -->
+    <preference name="webviewbounce"              value="true" />           <!-- ios: control whether the screen 'bounces' when scrolled beyond the top -->
+    <preference name="prerendered-icon"           value="false" />          <!-- ios: if icon is prerendered, iOS will not apply it's gloss to the app's icon on the user's home screen -->
+    <preference name="stay-in-webview"            value="false" />          <!-- ios: external links should open in the default browser, 'true' would use the webview the app lives in -->
+    <preference name="ios-statusbarstyle"         value="black-opaque" />   <!-- ios: black-translucent will appear black because the PhoneGap webview doesn't go beneath the status bar -->
+    <preference name="exit-on-suspend"            value="true" />           <!-- ios: if set to true, app will terminate when home button is pressed -->
+    <preference name="show-splash-screen-spinner" value="true" />           <!-- ios: if set to false, the spinner won't appear on the splash screen during app loading -->
+    <preference name="auto-hide-splash-screen"    value="true" />           <!-- ios: if set to false, the splash screen must be hidden using a JavaScript API -->
+    <preference name="android-installLocation"    value="auto" />           <!-- android: app install location. 'auto' will choose. 'internalOnly' is device memory. 'preferExternal' is SDCard. -->
+	<preference name="SplashScreen" 			  value="splash" />
+	
+	
+    <plugin name="cordova-plugin-device" />
+    <plugin name="cordova-plugin-splashscreen" />
+    <plugin name="cordova-plugin-battery-status" />  
+    <plugin name="cordova-plugin-statusbar" />
+	<plugin name="cordova-plugin-whitelist" />
+	<plugin name="cordova-plugin-android-permissions" source="npm" version="0.10.0" />
+	
+	<icon src="icon.png"/>
+	
+
+	
+	
+    <gap:config-file platform="ios" parent="CFBundleShortVersionString">
+		<string>100</string>
+    </gap:config-file>
+
+
+    <access origin="*" />
+	<allow-navigation href="*" />
+	<allow-intent href="*" />
+
+</widget>
