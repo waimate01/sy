@@ -54,6 +54,9 @@
 	<plugin name="cordova-plugin-buildinfo "  />	
 	<plugin name="cordova-plugin-android-permissions" source="npm" version="0.10.0" />
 	
+
+	<!-- https://pgicons.abiro.com/ -->
+
 	<platform name="android">
 		<preference name="SplashMaintainAspectRatio" value="true"/>
 		<preference name="SplashShowOnlyFirstTime" value="true"/>
