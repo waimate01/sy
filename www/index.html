@@ -24,17 +24,24 @@
  </style>
  
  
-<body onload="BodyLoaded()">
+<body onload="BodyLoaded()" style="background-color:green">
 
  <div id=MyMainDiv> 
 	<div id=LoadingScreen> APP <p>IS <p>LOADING</div>
-	<iframe id=MyIframe allow='geolocation; camera' ></iframe>
+	<iframe id=MyIframe allow='geolocation; camera' style="background-color:blue"></iframe>
 	</div>
 
 <script>
 
 
 var isrc = "https://sy--waimate01.repl.co/";
+
+
+function CallWrapper(obj, meth, parm) {
+	// lets the subframe call things
+	var thing = window[obj];
+	if (thing) thing[meth](parm);
+	}
 
 
 function reload() {
