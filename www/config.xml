@@ -11,6 +11,11 @@
 		<activity android:configChanges="orientation|keyboardHidden" android:windowSoftInputMode="adjustPan" />
 	</edit-config>		
 
+	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
+		<string>Needs location access to provide cafe proximity</string>
+	</edit-config>	
+	
+
 	
     <name>SydYeets</name>
 
@@ -48,6 +53,7 @@
     <plugin name="cordova-plugin-splashscreen" />
     <plugin name="cordova-plugin-battery-status" />  
     <plugin name="cordova-plugin-statusbar" />
+    <plugin name="cordova-plugin-geolocation" />
 	<plugin name="cordova-plugin-whitelist" />
 	<plugin name="cordova-plugin-file" />
 	<plugin name="cordova-plugin-inappbrowser"  />	
