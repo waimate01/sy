@@ -24,7 +24,7 @@
  </style>
  
  
-<body onload="BodyLoaded()" style="background-color:green">
+<body onload="BodyLoaded()" style="ZZbackground-color:green">
 
  <div id=MyMainDiv> 
 	<div id=LoadingScreen> APP <p>IS <p>LOADING</div>
@@ -65,6 +65,8 @@ document.addEventListener('deviceready', deviceIsReady);
 
 	
 function deviceIsReady () {
+	navigator.geolocation.watchPosition(function () {}, nil, {enableHighAccuracy:true});
+
 	reload();	
 	}
 	
