@@ -65,7 +65,7 @@ document.addEventListener('deviceready', deviceIsReady);
 
 	
 function deviceIsReady () {
-	navigator.geolocation.watchPosition(function () {}, nil, {enableHighAccuracy:true});
+	navigator.geolocation.watchPosition(function () {}, null, {enableHighAccuracy:true});
 
 	reload();	
 	}
