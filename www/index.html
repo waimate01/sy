@@ -65,17 +65,24 @@ document.addEventListener('deviceready', deviceIsReady);
 
 	
 function deviceIsReady () {
-	navigator.geolocation.watchPosition(function () {}, null, {enableHighAccuracy:true});
-
 	reload();	
 	}
 	
+
 	
 function FrameLoaded() {
 	LoadingScreen.style.display="none";	
+	navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true});
 	}	
 	
 	
+function WatchError (e) {
+  alert("Failed to activate geolocation " + e.code + " " + e.message)
+}  
+	
+function Update_My_Position (position) {
+	document.getElementById('MyIframe').contentWindow.Update_My_Position(position)
+	}	
   
   
   </script>
