@@ -113,6 +113,10 @@
 		<splash src="res/screen/ios/Default@2x~ipad~comany.png"/>
 	</platform>
 	
+
+	<platform name="browser">
+    <preference name="SplashScreenBackgroundColor" value="#89DCE2" /> <!-- defaults to "#464646" -->
+</platform>
 	
     <gap:config-file platform="ios" parent="CFBundleShortVersionString">
 		<string>100</string>
