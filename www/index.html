@@ -111,14 +111,24 @@ function WatchError (e) {
 }  
 	
 function Update_My_Position (position) {
-	document.getElementById('MyIframe').contentWindow.Update_My_Position(position)
+	document.getElementById('MyIframe').contentWindow.postMessage(cloneAsObject(position), "*");
+//	document.getElementById('MyIframe').contentWindow.Update_My_Position(position)
 	}	
   
+
+	
+function cloneAsObject(obj, lev) {
+	if (!lev) lev = 0;
+    if (obj === null || !(obj instanceof Object)) { return obj; }
+    var temp = (obj instanceof Array) ? [] : {};
+	for (var key in obj) { temp[key] = cloneAsObject(obj[key], lev + 1); }
+    return temp;
+	}	
+
   
   </script>
   
 
-<XXXscript src="https://davies2.com/sydyeets_versioncheck.txt"></script>script>
 
 </body>
 </html>

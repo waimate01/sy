@@ -1,3 +1,14 @@
 <html>
 This is the local subindex.html
+
+<script>
+function Update_My_Position (position) {
+  alert(JSON.stringify(position.coords))
+}
+ 
+addEventListener("message", function(event) {
+  alert(JSON.stringify(event.data.coords));
+});
+</script>
+
 </html>
