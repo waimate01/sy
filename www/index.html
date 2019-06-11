@@ -25,7 +25,7 @@
  </style>
  
  
-<body onload="reload()" 
+<body ZZonload="reload()" 
 	  ononline="OfflineScreen.style.display='none'" 
 	  onoffline="OfflineScreen.style.display='block'" 
 	  style="background-color:grey">
@@ -68,7 +68,6 @@ function CurrentVer (t) {
 	// By magic and subterfuge, this gets called with the name of the subframe to load,
 	// either subindex.html for the local pre-defined one,
 	// or an https fresh one
-console.log(t);
 loadsourcemodule(t);
 }	
 
