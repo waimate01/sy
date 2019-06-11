@@ -112,7 +112,7 @@ function WatchError (e) {
 }  
 	
 function Update_My_Position (position) {
-	document.getElementById('MyIframe').contentWindow.postMessage(cloneAsObject(position), "*");
+	 document.getElementById('MyIframe').contentWindow.postMessage(cloneAsObject(position), "*");
 //	document.getElementById('MyIframe').contentWindow.Update_My_Position(position)
 	}	
   
