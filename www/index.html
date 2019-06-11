@@ -103,7 +103,7 @@ function FrameLoaded() {
 	console.log("frame loaded")
 	LoadingScreen.style.display="none";	
 	setTimeout(function () {
-			navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true},100);
+			navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true})},100);
 	}	
 	
 	
