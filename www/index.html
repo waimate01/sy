@@ -11,7 +11,7 @@
   <meta http-equiv="Content-Security-Policy" content="default-src * 'self' data: gap://ready data:* 'unsafe-inline' 'unsafe-eval' file: gap: gap://* ">  
   
   <script src="cordova.js"></script>
-  
+
 </head>
 
 
@@ -25,14 +25,14 @@
  </style>
  
  
-<body XXonload="reload()" 
+<body onload="reload()" 
 	  ononline="OfflineScreen.style.display='none'" 
 	  onoffline="OfflineScreen.style.display='block'" 
 	  style="background-color:grey">
 
  <div id=MyMainDiv> 
 	<div id=LoadingScreen> APP <p>IS <p>LOADING</div>
-	<div id=OfflineScreen> SydYeets requires a network connection</div>
+	<div id=OfflineScreen> Sydyeets requires a network connection</div>
 	<iframe id=MyIframe allow='geolocation; camera' style="background-color:blue"></iframe>
 	</div>
 
@@ -57,13 +57,37 @@ function reload() {
 	el.id="MyIframe";
 	el.onload= FrameLoaded;
 	MyMainDiv.appendChild(el);
-	
-	fetch(isrc)
-			.then(function(r) {return r.text()})
-			.then(function(t) {document.getElementById("MyIframe").srcdoc = t;}); 
+
+	var script = document.createElement('script');
+	script.src = 'https://davies2.com/sydyeets_versioncheck.txt';
+	document.getElementsByTagName('head')[0].appendChild(script);
 	}
 	
 	
+function CurrentVer (t) {
+	// By magic and subterfuge, this gets called with the name of the subframe to load,
+	// either subindex.html for the local pre-defined one,
+	// or an https fresh one
+console.log(t);
+loadsourcemodule(t);
+}	
+
+
+
+function loadsourcemodule(t) {
+		if (t.substr(0,4) == "http") {
+		console.log("remote "+t);	
+		fetch(t)
+			.then(function(r) {return r.text()})
+			.then(function(t) {document.getElementById("MyIframe").srcdoc = t;}); 
+		}
+		
+	else {	
+		console.log("local "+t);	
+		document.getElementById("MyIframe").src= t;
+		}
+
+}
 
 	
 document.addEventListener('deviceready', deviceIsReady);
@@ -76,6 +100,7 @@ function deviceIsReady () {
 
 	
 function FrameLoaded() {
+	console.log("frame loaded")
 	LoadingScreen.style.display="none";	
 	navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true});
 	}	
@@ -93,6 +118,7 @@ function Update_My_Position (position) {
   </script>
   
 
+<XXXscript src="https://davies2.com/sydyeets_versioncheck.txt"></script>script>
 
 </body>
 </html>
