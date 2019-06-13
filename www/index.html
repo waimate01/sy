@@ -102,8 +102,8 @@ function deviceIsReady () {
 function FrameLoaded() {
 	console.log("frame loaded")
 	LoadingScreen.style.display="none";	
+    navigator.geolocation.getCurrentPosition(Update_My_Position);
 	setTimeout(function () {
-		navigator.geolocation.getCurrentPosition(Update_My_Position);
 		navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true})},50);
 	}	
 	

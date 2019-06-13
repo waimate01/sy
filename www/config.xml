@@ -46,6 +46,9 @@
 	<preference name="UIWebViewBounce" 		value="false" />	
 	<preference name="disallowOverscroll" value="true" />
 	<preference name="webviewbounce" value="false" />
+	<preference name="SplashScreenSpinnerColor" value="red" />
+    <preference name="SplashScreenBackgroundColor" value="#89DCE2" /> <!-- defaults to "#464646" -->
+    <preference name="ShowSplashScreenSpinner" value="false"/>
 
 	
 	
