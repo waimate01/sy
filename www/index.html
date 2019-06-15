@@ -27,7 +27,7 @@
  
 <body ZZonload="reload()" 
 	  ononline="OfflineScreen.style.display='none'" 
-	  onoffline="OfflineScreen.style.display='block'" 
+	  onoffline="OfflineScreen.style.display='block'; navigator.splashscreen.hide()" 
 	  style="background-color:#E0DAD2">
 
  <div id=MyMainDiv> 
@@ -102,6 +102,7 @@ function deviceIsReady () {
 function FrameLoaded() {
 	console.log("frame loaded")
 	LoadingScreen.style.display="none";	
+	navigator.splashscreen.hide();
     navigator.geolocation.getCurrentPosition(Update_My_Position);
 	setTimeout(function () {
 		navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true})},50);
