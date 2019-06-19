@@ -20,14 +20,14 @@
  #MyIframe {width: 100vw; border:none; height:100vh; }
  #MyMainDiv {position:relative}
  #LoadingScreen {font-size:200%; text-align:center; position:absolute; top:0; background-color:#E0DAD2}
- #OfflineScreen {font-size:200%; text-align:center; position:absolute; top:0; z-index:9; display:none; height: 100vh; width:100vw; background-color: red; padding: 20vh 10vw;}
+ #OfflineScreen {font-size:200%; text-align:center; position:absolute; top:0; z-index:9; display:none; height: 100vh; width:100vw; background-color: red; padding-top: 15%}
  
  </style>
  
  
 <body ZZonload="reload()" 
-	  ononline="OfflineScreen.style.display='none'" 
-	  onoffline="OfflineScreen.style.display='block'; navigator.splashscreen.hide()" 
+	  ononline="GoneOnline();" 
+	  onoffline="GoneOffline();" 
 	  style="background-color:#E0DAD2">
 
  <div id=MyMainDiv> 
@@ -41,6 +41,15 @@
 
 var isrc = "https://sy--waimate01.repl.co/";
 
+
+function GoneOnline () {
+	OfflineScreen.style.display='none';
+}
+
+function GoneOffline () {
+	OfflineScreen.style.display='block'; 
+	setTimeout(function () {navigator.splashscreen.hide()}, 500);
+}
 
 function CallWrapper(obj, meth, parm) {
 	// lets the subframe call things
