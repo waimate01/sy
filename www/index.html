@@ -21,19 +21,38 @@
  #MyMainDiv {position:relative}
  #LoadingScreen {font-size:200%; text-align:center; position:absolute; top:0; background-color:#E0DAD2}
  #OfflineScreen {font-size:200%; text-align:center; position:absolute; top:0; z-index:9; display:none; height: 100vh; width:100vw; background-color: red; padding-top: 15%}
+ #FetchErrorScreen {background-color: white; padding-top:17px; text-align:center; height: 100vh; display:none;}
+ #FetchErrorScreen img {width: 25%}
  
  </style>
  
  
-<body ZZonload="reload()" 
+<body zzload="reload()" 
 	  ononline="GoneOnline();" 
 	  onoffline="GoneOffline();" 
 	  style="background-color:#E0DAD2">
 
  <div id=MyMainDiv> 
-	<div id=LoadingScreen></div>
-	<div id=OfflineScreen> Sydyeets requires a network connection</div>
-	<iframe id=MyIframe allow='geolocation; camera' style="background-color:blue"></iframe>
+	<div id=LoadingScreen>
+		</div>
+
+	<div id=OfflineScreen> Sydyeets requires a network connection
+		</div>
+
+	<div id=FetchErrorScreen> 
+		<h2> Uh-oh sydneets</h2>
+		Error accessing Sydyeets server
+		<p>
+		<img src="RottenAvo.jpeg">
+		<p>
+			<span id = FetchErrorStatus></span> &nbsp; - &nbsp; 
+			<span id = FetchErrorStatusText></span>
+		<p>
+		Close app, restart and try again. If problems persist, contact Sydyeets.	
+		</div>
+
+	<iframe id=MyIframe allow='geolocation; camera' style="background-color:blue">
+		</iframe>
 	</div>
 
 <script>
@@ -44,11 +63,12 @@ var isrc = "https://sy--waimate01.repl.co/";
 
 function GoneOnline () {
 	OfflineScreen.style.display='none';
+	reload();
 }
 
 function GoneOffline () {
 	OfflineScreen.style.display='block'; 
-	setTimeout(function () {navigator.splashscreen.hide()}, 500);
+	setTimeout(function () {navigator.splashscreen.hide()}, 50);
 }
 
 function CallWrapper(obj, meth, parm) {
@@ -59,6 +79,9 @@ function CallWrapper(obj, meth, parm) {
 
 
 function reload() {
+	if (!navigator.onLine) {
+			GoneOffline();
+			}
     LoadingScreen.style.display="block";	
 	
 	el=document.createElement("IFRAME");
@@ -86,7 +109,12 @@ function loadsourcemodule(t) {
 		if (t.substr(0,4) == "http") {
 		console.log("remote "+t);	
 		fetch(t)
-			.then(function(r) {return r.text()})
+			.then(function(r) {return r.text();	})
+			.catch (function(err) {
+					FetchErrorStatus.innerText = err.status;
+					FetchErrorStatusText.innerText = err.statusText;
+					FetchErrorScreen.style.display='block'; 
+					})
 			.then(function(t) {document.getElementById("MyIframe").srcdoc = t; FrameLoaded();}); 
 		}
 		
