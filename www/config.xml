@@ -14,6 +14,10 @@
 	<edit-config target="NSLocationWhenInUseUsageDescription" file="*-Info.plist" mode="merge">
 		<string>Needs location access to provide cafe proximity</string>
 	</edit-config>	
+
+	<edit-config target="NSLocationAlwaysUsageDescription " file="*-Info.plist" mode="merge">
+		<string>Needs location access to provide cafe proximity</string>
+	</edit-config>	
 	
 
 	
@@ -55,7 +59,6 @@
 	
     <plugin name="cordova-plugin-device" />
     <plugin name="cordova-plugin-splashscreen" />
-    <plugin name="cordova-plugin-battery-status" />  
     <plugin name="cordova-plugin-statusbar" />
     <plugin name="cordova-plugin-geolocation" />
 	<plugin name="cordova-plugin-whitelist" />

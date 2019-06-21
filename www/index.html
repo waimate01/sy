@@ -27,7 +27,7 @@
  </style>
  
  
-<body zzload="reload()" 
+<body ZZonload="reload()" 
 	  ononline="GoneOnline();" 
 	  onoffline="GoneOffline();" 
 	  style="background-color:#E0DAD2">
@@ -93,6 +93,7 @@ function reload() {
 	var script = document.createElement('script');
 	script.src = 'https://davies2.com/sydyeets_versioncheck.txt';
 	document.getElementsByTagName('head')[0].appendChild(script);
+	script.onerror = FetchError;
 	}
 	
 	
@@ -107,23 +108,25 @@ loadsourcemodule(t);
 
 function loadsourcemodule(t) {
 		if (t.substr(0,4) == "http") {
-		console.log("remote "+t);	
 		fetch(t)
-			.then(function(r) {return r.text();	})
-			.catch (function(err) {
-					FetchErrorStatus.innerText = err.status;
-					FetchErrorStatusText.innerText = err.statusText;
-					FetchErrorScreen.style.display='block'; 
+			.then(function(r) {
+					return r.text();	
 					})
-			.then(function(t) {document.getElementById("MyIframe").srcdoc = t; FrameLoaded();}); 
+			.then(function(t) {document.getElementById("MyIframe").srcdoc = t; FrameLoaded();})
+			.catch (FetchError)
 		}
 		
 	else {	
-		console.log("local "+t);	
 		document.getElementById("MyIframe").src= t;
 		FrameLoaded();
 		}
 
+}
+
+function FetchError (err) {
+	FetchErrorStatus.innerText = err.status;
+	FetchErrorStatusText.innerText = err.statusText;
+	FetchErrorScreen.style.display='block'; 
 }
 
 	
@@ -137,7 +140,6 @@ function deviceIsReady () {
 
 	
 function FrameLoaded() {
-	console.log("frame loaded")
 	LoadingScreen.style.display="none";	
 	navigator.splashscreen.hide();
     navigator.geolocation.getCurrentPosition(Update_My_Position);
