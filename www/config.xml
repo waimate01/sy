@@ -15,7 +15,7 @@
 		<string>Needs location access to provide cafe proximity</string>
 	</edit-config>	
 
-	<edit-config target="NSLocationAlwaysUsageDescription " file="*-Info.plist" mode="merge">
+	<edit-config target="NSLocationAlwaysUsageDescription" file="*-Info.plist" mode="merge">
 		<string>Needs location access to provide cafe proximity</string>
 	</edit-config>	
 	
