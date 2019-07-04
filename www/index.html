@@ -19,7 +19,7 @@
  body {margin: 0; overflow: hidden;}
  #MyIframe {width: 100vw; border:none; height:100vh; }
  #MyMainDiv {position:relative}
- #LoadingScreen {font-size:200%; text-align:center; position:absolute; top:0; background-color:#E0DAD2}
+ #LoadingScreen {font-size:200%; text-align:center; position:absolute; top:0; background-color:#F9FAFA}
  #OfflineScreen {font-size:200%; text-align:center; position:absolute; top:0; z-index:9; display:none; height: 100vh; width:100vw; background-color: red; padding-top: 15%}
  #FetchErrorScreen {background-color: white; padding-top:17px; text-align:center; height: 100vh; display:none;}
  #FetchErrorScreen img {width: 25%}
@@ -30,7 +30,7 @@
 <body ZZonload="reload()" 
 	  ononline="GoneOnline();" 
 	  onoffline="GoneOffline();" 
-	  style="background-color:#E0DAD2">
+	  style="background-color:#F9FAFA">
 
  <div id=MyMainDiv> 
 	<div id=LoadingScreen>
@@ -59,6 +59,7 @@
 
 
 var isrc = "https://sy--waimate01.repl.co/";
+var paused = false;
 
 
 function GoneOnline () {
@@ -79,6 +80,7 @@ function CallWrapper(obj, meth, parm) {
 
 
 function reload() {
+	StatusBar.overlaysWebView(false);
 	if (!navigator.onLine) {
 			GoneOffline();
 			}
@@ -131,6 +133,8 @@ function FetchError (err) {
 
 	
 document.addEventListener('deviceready', deviceIsReady);
+document.addEventListener('pause', function () {paused = true});
+document.addEventListener('resume', function () {paused = false});
 
 	
 function deviceIsReady () {
@@ -144,7 +148,7 @@ function FrameLoaded() {
 	navigator.splashscreen.hide();
     navigator.geolocation.getCurrentPosition(Update_My_Position);
 	setTimeout(function () {
-		navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:true})},50);
+		navigator.geolocation.watchPosition(Update_My_Position, WatchError, {enableHighAccuracy:false})},50);
 	}	
 	
 	
@@ -153,10 +157,17 @@ function WatchError (e) {
 }  
 	
 function Update_My_Position (position) {
-	 document.getElementById('MyIframe').contentWindow.postMessage(cloneAsObject(position), "*");
+	if (!paused) {
+	 	document.getElementById('MyIframe').contentWindow.postMessage(cloneAsObject(position), "*");
+		}
 //	document.getElementById('MyIframe').contentWindow.Update_My_Position(position)
 	}	
   
+
+function OpenUrl(u, p) {
+	cordova.InAppBrowser.open(u, p);
+}
+
 
 	
 function cloneAsObject(obj, lev) {
